@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blueapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blueapp
+  template:
+    metadata:
+      labels:
+        app: blueapp
+    spec:
+      containers:
+      - name: fastapi
+        image: thundercatsho/pythonwebserver:latest
+        env:
+          - name: APP_MESSAGE
+            value: "This is the blue app"
+          - name: APP_BACKGROUND
+            value: "#0000FF"
+        ports:
+        - containerPort: 8000

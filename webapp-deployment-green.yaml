@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greenapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: greenapp
+  template:
+    metadata:
+      labels:
+        app: greenapp
+    spec:
+      containers:
+      - name: fastapi
+        image: thundercatsho/pythonwebserver:latest
+        env:
+          - name: APP_MESSAGE
+            value: "This is the green app"
+          - name: APP_BACKGROUND
+            value: "#00FF00"
+        ports:
+        - containerPort: 8000
